@@ -43,13 +43,13 @@ namespace MyGUI
 		size_t getItemCount() const;
 
 		//! Insert an item into a array at a specified position
-		void insertItemAt(size_t _index, Any _data = Any::Null);
+		void insertItemAt(size_t _index, Any _data = Any::Null, bool update = true);
 
 		//! Add an item to the end of a array
-		void addItem(Any _data = Any::Null);
+		void addItem(Any _data = Any::Null, bool update = true);
 
 		//! Remove item at a specified position
-		void removeItemAt(size_t _index);
+		void removeItemAt(size_t _index, bool update = true);
 
 		//! Remove all items
 		void removeAllItems();
@@ -126,6 +126,16 @@ namespace MyGUI
 		void setSize(int _width, int _height);
 		/** @copydoc Widget::setCoord(int _left, int _top, int _width, int _height) */
 		void setCoord(int _left, int _top, int _width, int _height);
+
+		/** Show VScroll when content size larger than view */
+		void setVisibleVScroll(bool _value);
+		/** Get Show VScroll flag */
+		bool isVisibleVScroll() const;
+
+		/** Show HScroll when content size larger than view */
+		void setVisibleHScroll(bool _value);
+		/** Get Show HScroll flag */
+		bool isVisibleHScroll() const;
 
 		/** Set view area offset. */
 		void setViewOffset(const IntPoint& _value);
@@ -263,9 +273,6 @@ namespace MyGUI
 		virtual size_t getVScrollPage();
 		virtual Align getContentAlign();
 		virtual void setContentPosition(const IntPoint& _point);
-
-		IntRect _getClientAbsoluteRect();
-		Widget* _getClientWidget();
 
 	private:
 		// наши дети в строках
